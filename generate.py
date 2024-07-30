@@ -1,7 +1,7 @@
 import random
 import hashlib as hs
 
-bip39_list = open("words.txt", "r").read().split(",") #split it and transform it into an array
+bip39_list = open("words.txt", "r").read().split(",") #read file, split it and transform it into an array
 
 words_list = [] #initialize private key words
 
