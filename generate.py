@@ -1,7 +1,8 @@
 import random
 import hashlib as hs
+import hmac
 
-bip39_list = open("words.txt", "r").read().split(",") #read file, split it and transform it into an array
+bip39_list = open("words.txt", "r").read().split(",") #split it and transform it into an array
 
 words_list = [] #initialize private key words
 
@@ -23,6 +24,15 @@ seed = hs.pbkdf2_hmac(
     2048 #BIP39 standard iterations
     )
 
-print(f"Seed (hex): {seed.hex()}")
+print(f"Seed (hex): {seed.hex()}") #DISPLAY
 
-#NOT FINISHED YET
+key = b"Bitcoin seed" #standard value
+hmac_result = hmac.new(key, seed, hs.sha512).digest() #get digest bytes of the computed HMAC-SHA512
+
+master_private_key = hmac_result[:32] #get the master private key (the first 32 bytes)
+chain_code = hmac_result[32:] #get the chain code in case i will need child keys (the last 32 bytes)
+
+print(f"Private Key (hex): {master_private_key.hex()}") #DISPLAY
+print(f"Chain Code (hex): {chain_code.hex()}") #DISPLAY
+
+#NOT FINISHED
