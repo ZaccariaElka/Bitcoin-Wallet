@@ -2,13 +2,13 @@ import random
 import hashlib as hs
 import hmac
 
-bip39_list = open("words.txt", "r").read().split(",") #split it and transform it into an array
+bip39_list = open("words.txt", "r").read().split("\n") #split it and transform it into an array
 
 words_list = [] #initialize private key words
 
 #pick random 12 words, the loop will continue until the array contains 12 unique words.
 while len(words_list) < 12:
-    random_word = bip39_list[random.randint(0, 2048 - 1)] #pick a random word
+    random_word = random.choice(bip39_list) #pick a random word
 
     if random_word not in words_list: #check if the word is already in the array
         words_list.append(random_word)
