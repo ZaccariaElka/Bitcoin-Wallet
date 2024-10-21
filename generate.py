@@ -62,3 +62,5 @@ print("Mainnet Hash + Checksum):", combined_hashes.hex())
 
 bitcoin_address = base58.b58encode(combined_hashes).decode('utf-8') #Encode hash in Base58 and make it more human Readable creating a Bitcoin adress
 print("Bitcoin Address:", bitcoin_address)
+
+input("Press Enter to exit...")
